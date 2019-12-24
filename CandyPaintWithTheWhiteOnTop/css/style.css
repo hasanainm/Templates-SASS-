@@ -1,9 +1,61 @@
+/* colors
+#E77170
+#C2CAD0
+#C2B9B0
+#7E685A
+#AFD275
+*/
+
+/* Universal Selector */
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  font-family: 'Roboto Condensed', sans-serif;
+  padding: 20px;
+}
+
 /* font-size: 10px; - "bad practice", should not be pixels because by doing so you will override the browser font size setting that the user can manually change in the settings, for example when the user can not see so good. The user will be able to change the default font size however our root font size will remain unaffected.  */
 
 /* change to percentage will translate to a percentage of the font size given by the browser. By default the page will set to 16px. So if we put 100% this would mean that the root font size would be 16 pixel if the user doesnt change anything and if the user does change the default font size, lets say to 18px then the root font size will be 18 px. If you dont want it to be 16px by default all you have to do is divide what you want by 16px...so 10/16 = .625. 62.5%. 62.5 * 16 = 10px  With this you allow the user to actually zoom in on the page automatically, not only to change the font size but to also zoom in on the page */
 
 html {
 font-size: 62.5%;
+}
+
+.header{
+  text-transform: uppercase;
+  background-image:linear-gradient(60deg,rgb(226, 148, 129), rgb(238, 185, 185), rgb(209, 75, 104));;
+  height: 100vh;
+  position: relative;
+}
+
+.text-area{
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.heading-primary{
+  text-align: center;
+  color: white;
+}
+
+.heading-primary-main{
+  display: block;
+  font-size: 4rem;
+  font-weight: 400;
+  letter-spacing: 0.5rem
+}
+.heading-primary-sub{
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0.75rem;
 }
 
 /* ^ allows to select only the ones that start with "col-"
@@ -19,7 +71,6 @@ margin-right: 6rem;
 
 .row {
   max-width: 114rem;
-  background-color: #eee;
   margin: 0 auto;
 }
 
@@ -35,30 +86,30 @@ margin-right: 6rem;
 
 .col-1-of-2 {
   width: calc((100% - 6rem) / 2); 
-  background-color: orangered;
+  /*  */
 }
   
 .col-1-of-3 {
   width: calc((100% - 2 * 6rem) / 3); 
-  background-color: orangered;
+ 
 }
   
 .col-2-of-3 {
   width: calc(2 * ((100% - 2 * 6rem) / 3) + 6rem); 
-  background-color: orangered;
+ 
 }
 
 .col-1-of-4 {
   width: calc((100% - 3 * 6rem) / 4); 
-  background-color: orangered;
+ 
 }
 
 .col-2-of-4 {
   width: calc(2 * ((100% - 3 * 6rem) / 4) + 6rem);
-  background-color: orangered; 
+  
 }
 
 .col-3-of-4 {
   width: calc(3 * ((100% - 3 * 6rem) / 4) + 2 * 6rem); 
-  background-color: orangered;
+ 
 }
