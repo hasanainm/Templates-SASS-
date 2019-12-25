@@ -33,7 +33,7 @@ font-size: 62.5%;
 
 .header{
   text-transform: uppercase;
-  background-image: linear-gradient(60deg,rgb(226, 148, 129, .8), rgb(238, 185, 185,.8), rgb(209, 75, 104,.8)),url(../img/bia-andrade-PO8Woh4YBD8-unsplash.jpg);
+  background-image: linear-gradient(60deg,rgb(226, 148, 129), rgb(238, 185, 185), rgb(209, 75, 104));
   height: 95vh;
   position: relative;
 }
@@ -47,8 +47,9 @@ font-size: 62.5%;
 }
 
 .heading-primary{
-  color:black;
+  color:white;
   backface-visibility: hidden;
+  margin-bottom: 5rem
 }
 
 .heading-primary-main{
@@ -56,14 +57,70 @@ font-size: 62.5%;
   font-size: 4rem;
   font-weight: 400;
   letter-spacing: 0.5rem;
-  animation: slideInLeft 2s;
+  animation: slideInLeft 1s;
 }
 .heading-primary-sub{
   display: block;
   font-size: 2rem;
   font-weight: 700;
   letter-spacing: 0.75rem;
-  animation: slideInRight 2s ease-out;
+  animation: slideInRight 1s ease-out;
+}
+
+.btn:link,
+.btn:visited{
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1.5rem 6rem;
+  /* inline-block allows to set a width and height on the element */
+  display: inline-block;
+  border-radius: 10rem;
+  transition: all .3s;
+  position: relative;
+}
+.btn:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, .3)
+}
+.btn:active{
+  transform: translateY(-1px);
+  box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .3)
+}
+.btn-white{
+  background-color:white;
+  color:#E77170
+}
+/* the after pseudo element will be essential for creating a powerful effect after clicking the button*/
+.btn::after {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 10rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* for it to see what is behind the button */
+  z-index: -1;
+  transition: all .4s;
+}
+
+.btn-white::after {
+  background-color: white;
+
+}
+
+/* after pseudo element when we have the button on the hover state */
+.btn:hover::after {
+transform: scaleX(1.4) scaleY(1.6);
+opacity: 0;
+}
+
+.btn-animated{
+  animation: slideInFromBottom .5s ease-out .75s;
+  /* it will automatically apply the styles up to zero percent before the animation starts. The styles in the slideInFromBottom will apply before the animation starts*/
+  animation-fill-mode: backwards;
 }
 
 @keyframes slideInLeft{
@@ -86,6 +143,16 @@ font-size: 62.5%;
   }
   80%  {
     transform: translateX(-10px);
+  }
+  100%  {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+@keyframes slideInFromBottom {
+  0%  {
+    opacity: 0;
+    transform: translateY(3rem);
   }
   100%  {
     opacity: 1;
