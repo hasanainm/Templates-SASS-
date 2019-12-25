@@ -1,0 +1,215 @@
+$color-pink:#E77170;
+$color-blue-light:#C2CAD0;
+$color-grey-light:#C2B9B0;
+$color-brown:#7E685A;
+$color-green-light:#AFD275;
+
+$color-white:#fff;
+$color-black:#000;
+
+
+/* Universal Selector */
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing:inherit;
+}
+
+body{
+  font-family: 'Roboto Condensed', sans-serif;
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 1.7;
+  color: #777;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+/* font-size: 10px; - "bad practice", should not be pixels because by doing so you will override the browser font size setting that the user can manually change in the settings, for example when the user can not see so good. The user will be able to change the default font size however our root font size will remain unaffected.  */
+
+/* change to percentage will translate to a percentage of the font size given by the browser. By default the page will set to 16px. So if we put 100% this would mean that the root font size would be 16 pixel if the user doesnt change anything and if the user does change the default font size, lets say to 18px then the root font size will be 18 px. If you dont want it to be 16px by default all you have to do is divide what you want by 16px...so 10/16 = .625. 62.5%. 62.5 * 16 = 10px  With this you allow the user to actually zoom in on the page automatically, not only to change the font size but to also zoom in on the page */
+
+html {
+font-size: 62.5%;
+}
+
+.header{
+  text-transform: uppercase;
+  background-image: linear-gradient(60deg,rgb(226, 148, 129), rgb(238, 185, 185), rgb(209, 75, 104));
+  height: 95vh;
+  position: relative;
+  &__text-area{
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+}
+
+.heading-primary{
+  color:$color-white;
+  backface-visibility: hidden;
+  margin-bottom: 5rem;
+
+  &--main{
+  display: block;
+  font-size: 4rem;
+  font-weight: 400;
+  letter-spacing: 0.5rem;
+  animation: slideInLeft 1s;
+  }
+  &--sub{
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0.75rem;
+  animation: slideInRight 1s ease-out;
+  }
+}
+
+.btn{
+  &:link,
+  &:visited{
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 6rem;
+    /* inline-block allows to set a width and height on the element */
+    display: inline-block;
+    border-radius: 10rem;
+    transition: all .3s;
+    position: relative;
+  }
+  &:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, .3);
+      /* after pseudo element when we have the button on the hover state */
+  &::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
+    }
+  }
+  &:active{
+    transform: translateY(-1px);
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .3)
+  }
+  &--white{
+    background-color:$color-white;
+    color: $color-pink;
+    &::after {
+    background-color:$color-white
+    }
+  }
+  /* the after pseudo element will be essential for creating a powerful effect after clicking the button*/
+  &::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 10rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* for it to see what is behind the button */
+    z-index: -1;
+    transition: all .4s;
+  }
+  &--animated{
+    animation: slideInFromBottom .5s ease-out .75s;
+    /* it will automatically apply the styles up to zero percent before the animation starts. The styles in the slideInFromBottom will apply before the animation starts*/
+    animation-fill-mode: backwards;
+  }
+}
+
+@keyframes slideInLeft{
+  0%  {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  80%  {
+    transform: translateX(20px);
+  }
+  100%  {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+@keyframes slideInRight {
+  0%  {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  80%  {
+    transform: translateX(-10px);
+  }
+  100%  {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+@keyframes slideInFromBottom {
+  0%  {
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+  100%  {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+/* ^ allows to select only the ones that start with "col-"
+* allows to select ANY classes that contain "col-" 
+$ allows to select ANY classes that end with "col-"*/
+
+[class^="col-"]{
+float: left;
+}
+[class^="col-"]:not(:last-child){
+margin-right: 6rem;
+}
+
+.row {
+  max-width: 114rem;
+  margin: 0 auto;
+}
+
+.row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+/* we want the property to take affect on every row besides the last row. */
+.row:not(:last-child) {
+  margin-bottom: 8rem;
+}
+
+.col-1-of-2 {
+  width: calc((100% - 6rem) / 2); 
+  /*  */
+}
+  
+.col-1-of-3 {
+  width: calc((100% - 2 * 6rem) / 3); 
+ 
+}
+  
+.col-2-of-3 {
+  width: calc(2 * ((100% - 2 * 6rem) / 3) + 6rem); 
+ 
+}
+
+.col-1-of-4 {
+  width: calc((100% - 3 * 6rem) / 4); 
+ 
+}
+
+.col-2-of-4 {
+  width: calc(2 * ((100% - 3 * 6rem) / 4) + 6rem);
+  
+}
+
+.col-3-of-4 {
+  width: calc(3 * ((100% - 3 * 6rem) / 4) + 2 * 6rem); 
+ 
+}
