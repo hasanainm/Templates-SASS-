@@ -1,8 +1,15 @@
 /* Universal Selector */
-* {
+*,
+*::after,
+*::before {
   margin: 0;
   padding: 0;
   box-sizing: inherit; }
+
+/* font-size: 10px; - "bad practice", should not be pixels because by doing so you will override the browser font size setting that the user can manually change in the settings, for example when the user can not see so good. The user will be able to change the default font size however our root font size will remain unaffected.  */
+/* change to percentage will translate to a percentage of the font size given by the browser. By default the page will set to 16px. So if we put 100% this would mean that the root font size would be 16 pixel if the user doesnt change anything and if the user does change the default font size, lets say to 18px then the root font size will be 18 px. If you dont want it to be 16px by default all you have to do is divide what you want by 16px...so 10/16 = .625. 62.5%. 62.5 * 16 = 10px  With this you allow the user to actually zoom in on the page automatically, not only to change the font size but to also zoom in on the page */
+html {
+  font-size: 62.5%; }
 
 body {
   font-family: 'Roboto Condensed', sans-serif;
@@ -13,25 +20,43 @@ body {
   padding: 2rem;
   box-sizing: border-box; }
 
-/* font-size: 10px; - "bad practice", should not be pixels because by doing so you will override the browser font size setting that the user can manually change in the settings, for example when the user can not see so good. The user will be able to change the default font size however our root font size will remain unaffected.  */
-/* change to percentage will translate to a percentage of the font size given by the browser. By default the page will set to 16px. So if we put 100% this would mean that the root font size would be 16 pixel if the user doesnt change anything and if the user does change the default font size, lets say to 18px then the root font size will be 18 px. If you dont want it to be 16px by default all you have to do is divide what you want by 16px...so 10/16 = .625. 62.5%. 62.5 * 16 = 10px  With this you allow the user to actually zoom in on the page automatically, not only to change the font size but to also zoom in on the page */
-html {
-  font-size: 62.5%; }
+@keyframes slideInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px); }
+  80% {
+    transform: translateX(20px); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
 
-.header {
-  text-transform: uppercase;
-  background-image: linear-gradient(60deg, #e29481, #eeb9b9, #d14b68);
-  height: 95vh;
-  position: relative; }
-  .header__text-area {
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center; }
+@keyframes slideInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100px); }
+  80% {
+    transform: translateX(-10px); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
+
+@keyframes slideInFromBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(3rem); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
+
+body {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 1.7;
+  padding: 2rem; }
 
 .heading-primary {
-  color: #fff;
+  color: white;
   backface-visibility: hidden;
   margin-bottom: 5rem; }
   .heading-primary--main {
@@ -46,6 +71,24 @@ html {
     font-weight: 700;
     letter-spacing: 0.75rem;
     animation: slideInRight 1s ease-out; }
+
+.u-center-text {
+  text-align: center !important; }
+
+.u-margin-bottom-small {
+  margin-bottom: 1.5rem !important; }
+
+.u-margin-bottom-medium {
+  margin-bottom: 4rem !important; }
+
+.u-margin-bottom-big {
+  margin-bottom: 8rem !important; }
+
+.u-margin-top-big {
+  margin-top: 8rem !important; }
+
+.u-margin-top-huge {
+  margin-top: 10rem !important; }
 
 .btn {
   /* the after pseudo element will be essential for creating a powerful effect after clicking the button*/ }
@@ -91,43 +134,9 @@ html {
     /* it will automatically apply the styles up to zero percent before the animation starts. The styles in the slideInFromBottom will apply before the animation starts*/
     animation-fill-mode: backwards; }
 
-@keyframes slideInLeft {
-  0% {
-    opacity: 0;
-    transform: translateX(-100px); }
-  80% {
-    transform: translateX(20px); }
-  100% {
-    opacity: 1;
-    transform: translate(0); } }
-
-@keyframes slideInRight {
-  0% {
-    opacity: 0;
-    transform: translateX(100px); }
-  80% {
-    transform: translateX(-10px); }
-  100% {
-    opacity: 1;
-    transform: translate(0); } }
-
-@keyframes slideInFromBottom {
-  0% {
-    opacity: 0;
-    transform: translateY(3rem); }
-  100% {
-    opacity: 1;
-    transform: translate(0); } }
-
 /* ^ allows to select only the ones that start with "col-"
 * allows to select ANY classes that contain "col-" 
 $ allows to select ANY classes that end with "col-"*/
-[class^="col-"] {
-  float: left; }
-
-[class^="col-"]:not(:last-child) {
-  margin-right: 6rem; }
-
 .row {
   max-width: 114rem;
   margin: 0 auto; }
@@ -140,6 +149,12 @@ $ allows to select ANY classes that end with "col-"*/
 /* we want the property to take affect on every row besides the last row. */
 .row:not(:last-child) {
   margin-bottom: 8rem; }
+
+[class^="col-"] {
+  float: left; }
+
+[class^="col-"]:not(:last-child) {
+  margin-right: 6rem; }
 
 .col-1-of-2 {
   width: calc((100% - 6rem) / 2);
@@ -159,3 +174,15 @@ $ allows to select ANY classes that end with "col-"*/
 
 .col-3-of-4 {
   width: calc(3 * ((100% - 3 * 6rem) / 4) + 2 * 6rem); }
+
+.header {
+  text-transform: uppercase;
+  background-image: linear-gradient(60deg, #e29481, #eeb9b9, #d14b68);
+  height: 95vh;
+  position: relative; }
+  .header__text-area {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center; }
