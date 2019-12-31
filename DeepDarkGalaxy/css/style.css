@@ -176,11 +176,29 @@ body {
     animation-fill-mode: backwards; }
 
 .card {
-  background-color: red;
+  perspective: 150rem;
   height: 30rem;
-  transition: all .8s; }
-  .card:hover {
+  -moz-perspective: 150rem;
+  position: relative; }
+  .card__side {
+    background-color: blue;
+    color: greenyellow;
+    height: 30rem;
+    transition: all .8s;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    backface-visibility: hidden; }
+    .card__side--front {
+      background-color: blue; }
+    .card__side--back {
+      background-color: green;
+      transform: rotateY(180deg); }
+  .card:hover .card__side--front {
     transform: rotateY(180deg); }
+  .card:hover .card__side--back {
+    transform: rotateY(0); }
 
 .connect__icon {
   cursor: pointer;
@@ -274,7 +292,7 @@ $ allows to select ANY classes that end with "col-"*/
 
 .section-project {
   background-color: #05386B;
-  padding: 2rem; }
+  height: auto; }
 
 .section-contact {
   background-color: #5CDB95; }
