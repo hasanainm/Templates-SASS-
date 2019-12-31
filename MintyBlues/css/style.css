@@ -111,8 +111,8 @@ body {
 .u-margin-top-huge {
   margin-top: 10rem !important; }
 
-.u-padding-left {
-  padding: 2.5rem; }
+.u-padding {
+  padding-left: 2.5rem; }
 
 .u-contact-color {
   color: #05386B; }
@@ -180,29 +180,40 @@ body {
   height: 30rem;
   -moz-perspective: 150rem;
   position: relative; }
+  .card-image {
+    height: 100%;
+    width: 100%;
+    border-radius: 4px;
+    backface-visibility: hidden;
+    opacity: .6;
+    position: relative; }
+  .card-title {
+    position: absolute;
+    z-index: 1; }
   .card__side {
-    background-color: blue;
-    color: greenyellow;
+    color: black;
     height: 30rem;
-    transition: all .8s;
+    transition: all .8s ease;
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    backface-visibility: hidden; }
+    backface-visibility: hidden;
+    border-radius: 4px; }
     .card__side--front {
-      background-color: blue; }
+      background-color: #ecf1f3; }
     .card__side--back {
-      background-color: green;
-      transform: rotateY(180deg); }
+      background-color: #5CDB95;
+      transform: rotateY(180deg);
+      padding: 7rem; }
   .card:hover .card__side--front {
-    transform: rotateY(180deg); }
+    transform: rotateY(-180deg); }
   .card:hover .card__side--back {
     transform: rotateY(0); }
 
 .connect__icon {
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all .3s;
   backface-visibility: hidden; }
   .connect__icon:hover {
     transform: translateY(-2rem); }
@@ -288,11 +299,13 @@ $ allows to select ANY classes that end with "col-"*/
   margin-top: -3rem; }
 
 .skills-list {
-  height: auto; }
+  height: auto;
+  margin-bottom: 5rem; }
 
 .section-project {
   background-color: #05386B;
-  height: auto; }
+  height: auto;
+  padding: 2rem; }
 
 .section-contact {
   background-color: #5CDB95; }
